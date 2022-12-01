@@ -23,6 +23,10 @@ public class EnemyAI : MonoBehaviour
     public float health;
     public float maxHealth;
 
+    [Header("Knockback")]
+    public bool isknockedBack = false;
+    private Vector3 knockbackDirection;
+
 
     private void Awake()
     {
@@ -37,6 +41,7 @@ public class EnemyAI : MonoBehaviour
         var patrolingState = fsm.CreateState("Patroling");
         var ChasingState = fsm.CreateState("Chasing");
         var deadState = fsm.CreateState("Dead");
+        var knockbackState = fsm.CreateState("Knockback");
 
         patrolingState.onEnter = delegate
         {
@@ -45,7 +50,7 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onFrame = delegate
         {
-            
+            fsm.TransitionTo("Chasing");
         };
 
         patrolingState.onExit = delegate
@@ -87,6 +92,24 @@ public class EnemyAI : MonoBehaviour
         {
 
         };
+
+        knockbackState.onEnter = delegate
+        {
+            StartCoroutine(Knockback());
+        };
+
+        knockbackState.onFrame = delegate
+        {
+            if (!isknockedBack)
+            {
+                fsm.TransitionTo("Chasing");
+            }
+        };
+
+        knockbackState.onExit = delegate
+        {
+
+        };
     }
 
     
@@ -101,6 +124,44 @@ public class EnemyAI : MonoBehaviour
     {
         //player.GetComponent<PlayerController>().TakeDamage(damage);
         Debug.Log("Damaged Player");
+    }
+
+    public void TakeDamage(float damage, Vector3 force)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            fsm.TransitionTo("Dead");
+        }
+        else
+        {
+            OnKnockback(force);
+        }
+
+    }
+
+    IEnumerator Knockback()
+    {
+        if (rb != null)
+        {
+            isknockedBack = true;
+            agent.enabled = false;
+            rb.AddForce(knockbackDirection, ForceMode.Impulse);
+            yield return new WaitForSeconds(0.1f);
+        }
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            agent.enabled = true;
+            isknockedBack = false;
+        }
+    }
+
+    public void OnKnockback(Vector3 directionForce)
+    {
+        knockbackDirection = directionForce;
+        fsm.TransitionTo("Knockback");
     }
 
     private void OnTriggerEnter(Collider other)
