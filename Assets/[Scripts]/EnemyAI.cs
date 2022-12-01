@@ -23,10 +23,18 @@ public class EnemyAI : MonoBehaviour
     public float health;
     public float maxHealth;
 
+    [Header("Patrolling")]
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
     [Header("Knockback")]
     public bool isknockedBack = false;
     private Vector3 knockbackDirection;
 
+    [Header("Ranges/States")]
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
     {
@@ -40,6 +48,7 @@ public class EnemyAI : MonoBehaviour
         fsm = new FiniteStateMachine();
         var patrolingState = fsm.CreateState("Patroling");
         var ChasingState = fsm.CreateState("Chasing");
+        var attackingState = fsm.CreateState("Attacking");
         var deadState = fsm.CreateState("Dead");
         var knockbackState = fsm.CreateState("Knockback");
 
@@ -75,6 +84,21 @@ public class EnemyAI : MonoBehaviour
         ChasingState.onExit = delegate
         {
            
+        };
+
+        attackingState.onEnter = delegate
+        {
+
+        };
+
+        attackingState.onFrame = delegate
+        {
+            fsm.TransitionTo("Chasing");
+        };
+
+        attackingState.onExit = delegate
+        {
+
         };
 
         deadState.onEnter = delegate
@@ -118,6 +142,9 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         fsm.Update();
+        //check if player is in range of vision or attack range (or neither)
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
     }
 
     public void DamagePlayer()
