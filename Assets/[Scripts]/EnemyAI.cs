@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Ranges/States")]
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange, walkCoroutineRunning;
 
     private void Awake()
     {
@@ -59,7 +59,34 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onFrame = delegate
         {
-            fsm.TransitionTo("Chasing");
+            if (!walkPointSet)
+            {
+                SearchWalkPoint();
+            }
+
+            if (walkPointSet)
+            {
+                if (!walkCoroutineRunning)
+                {
+                    StartCoroutine(WalkToPoint());
+                }
+                
+
+            }
+
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            //walkpoint reached
+            if (distanceToWalkPoint.magnitude < 0.1f)
+            {
+                StopCoroutine(WalkToPoint());
+                walkPointSet = false;
+            }
+
+            if (playerInSightRange && !playerInAttackRange)
+            {
+                fsm.TransitionTo("Chasing");
+            }
         };
 
         patrolingState.onExit = delegate
@@ -79,6 +106,14 @@ public class EnemyAI : MonoBehaviour
             {
                 agent.SetDestination(player.position);
             }
+            if (playerInSightRange && playerInAttackRange)
+            {
+                fsm.TransitionTo("Attacking");
+            }
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+                fsm.TransitionTo("Patroling");
+            }
         };
 
         ChasingState.onExit = delegate
@@ -93,7 +128,7 @@ public class EnemyAI : MonoBehaviour
 
         attackingState.onFrame = delegate
         {
-            fsm.TransitionTo("Chasing");
+            
         };
 
         attackingState.onExit = delegate
@@ -145,6 +180,28 @@ public class EnemyAI : MonoBehaviour
         //check if player is in range of vision or attack range (or neither)
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+    }
+
+    
+    IEnumerator WalkToPoint()
+    {
+        walkCoroutineRunning = true;
+        yield return new WaitForSeconds(3);
+        agent.SetDestination(walkPoint);
+        walkCoroutineRunning = false;
+    }
+    private void SearchWalkPoint()
+    {
+        //make a random point that is in the range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2.0f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
     }
 
     public void DamagePlayer()
