@@ -1,0 +1,29 @@
+/////////////////////////
+//Block Guns Collection//
+/////////////////////////
+
+
+This is a collection of popular firearms in a blocky low poly style. All weapons support different materials and are ready for animations. 
+
+You can customize the weapons with 25 different attachments ranging from grips, sights, grenade launchers, suppressors and more. Even the dot in some of the sights can be replaced with something of your own.
+
+The weapons are sub 300 tris, while the attachments are sub 100 tris. Materials are 64x64 for weapons/attachments and 4x4 for the bullets/grenade.
+
+
+-Instructions-
+
+To use the models simply drag them from the library and into the scene. The default material is 
+"Tactical" and is linked to all models. You can change it by simply dragging another material over the part. Also note that the "Wooden" materials may not look as nice on all models.
+
+When using attachments I recommend setting them up with the weapon as a parent in the hierarchy.
+
+Parts of the weapons such as the slides and magazines are separate to allow easier animation. Please 
+make sure that you use the Local and Pivot tool handles for optimal control.
+
+Some weapons have multiple attachments already in the model hierarchy. These are:
+
+The AutorifleUG have both a rail and a classic sight, simply delete the one you don’t need.
+The Autorrifle2k have both iron sights and the Advanced scope. Delete the one you don’t need.
+The SG12 have both the folded and unfolded stock. Delete the one you don’t need.
+
+To change the color of the dot in the sights just drag your own material on it. You can even switch the dot with a shape of your own as its a separate object in the hierarchy. Note that the dot is a simple plane, so it will not be visible from both sides.
