@@ -16,9 +16,19 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    [Header("FOV")]
+    public float radius;
+    [Range(0, 360)]
+    public float angle;
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
+    public bool canSeePlayer;
+
     [Header("Attacking")]
     public bool playerInTrigger = false;
     public float damage;
+    public float timeInCollider;
+    public float timeNotInCollider;
 
     [Header("Health")]
     public float health;
@@ -47,10 +57,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(FOVRoutine());
+
         fsm = new FiniteStateMachine();
         var patrolingState = fsm.CreateState("Patroling");
         var ChasingState = fsm.CreateState("Chasing");
-        var attackingState = fsm.CreateState("Attacking");
         var deadState = fsm.CreateState("Dead");
         var knockbackState = fsm.CreateState("Knockback");
 
@@ -86,7 +97,7 @@ public class EnemyAI : MonoBehaviour
                 walkPointSet = false;
             }
 
-            if (playerInSightRange && !playerInAttackRange)
+            if (canSeePlayer)
             {
                 fsm.TransitionTo("Chasing");
             }
@@ -94,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onExit = delegate
         {
-           
+            StopCoroutine(WalkToPoint());
         };
 
         //chasing state
@@ -109,11 +120,8 @@ public class EnemyAI : MonoBehaviour
             {
                 agent.SetDestination(player.position);
             }
-            if (playerInSightRange && playerInAttackRange)
-            {
-                fsm.TransitionTo("Attacking");
-            }
-            if (!playerInSightRange && !playerInAttackRange)
+            
+            if (!canSeePlayer && !playerInAttackRange)
             {
                 fsm.TransitionTo("Patroling");
             }
@@ -122,21 +130,6 @@ public class EnemyAI : MonoBehaviour
         ChasingState.onExit = delegate
         {
            
-        };
-
-        attackingState.onEnter = delegate
-        {
-
-        };
-
-        attackingState.onFrame = delegate
-        {
-            
-        };
-
-        attackingState.onExit = delegate
-        {
-
         };
 
         deadState.onEnter = delegate
@@ -185,7 +178,43 @@ public class EnemyAI : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
     }
 
-    
+    private IEnumerator FOVRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;
+            }
+            else
+                canSeePlayer = false;
+        }
+        else if (canSeePlayer)
+            canSeePlayer = false;
+    }
+
+
     IEnumerator WalkToPoint()
     {
         walkCoroutineRunning = true;
@@ -209,8 +238,9 @@ public class EnemyAI : MonoBehaviour
 
     public void DamagePlayer()
     {
-        //player.GetComponent<PlayerController>().TakeDamage(damage);
-        Debug.Log("Damaged Player");
+        player.GetComponent<PlayerController>().TakeDamage(damage);
+        OnKnockback(-transform.forward * 0.2f);
+        Debug.Log("Damaghed Player");
     }
 
     public void TakeDamage(float damage, Vector3 force)
