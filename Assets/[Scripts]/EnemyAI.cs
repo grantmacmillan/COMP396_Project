@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Unity")]
     public NavMeshAgent agent;
     public Transform player;
+    public Vector3 startingPoint;
     FiniteStateMachine fsm;
     public Rigidbody rb;
 
@@ -34,13 +35,14 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Ranges/States")]
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange, walkCoroutineRunning;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform; //find the player in the scene
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        startingPoint = transform.position;
     }
 
     private void Start()
@@ -59,7 +61,35 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onFrame = delegate
         {
-            fsm.TransitionTo("Chasing");
+            if (walkPointSet)
+            {
+                if (!walkCoroutineRunning)
+                {
+                    StartCoroutine(WalkToPoint());
+                }
+                
+
+            }
+            if (!walkPointSet)
+            {
+                
+                walkPoint = RandomNavSphere(startingPoint, walkPointRange, -1);
+                walkPointSet = true;
+            }
+            
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            //walkpoint reached
+            if (distanceToWalkPoint.magnitude < 0.1f)
+            {
+                StopCoroutine(WalkToPoint());
+                walkPointSet = false;
+            }
+
+            if (playerInSightRange && !playerInAttackRange)
+            {
+                fsm.TransitionTo("Chasing");
+            }
         };
 
         patrolingState.onExit = delegate
@@ -79,6 +109,14 @@ public class EnemyAI : MonoBehaviour
             {
                 agent.SetDestination(player.position);
             }
+            if (playerInSightRange && playerInAttackRange)
+            {
+                fsm.TransitionTo("Attacking");
+            }
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+                fsm.TransitionTo("Patroling");
+            }
         };
 
         ChasingState.onExit = delegate
@@ -93,7 +131,7 @@ public class EnemyAI : MonoBehaviour
 
         attackingState.onFrame = delegate
         {
-            fsm.TransitionTo("Chasing");
+            
         };
 
         attackingState.onExit = delegate
@@ -147,6 +185,28 @@ public class EnemyAI : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
     }
 
+    
+    IEnumerator WalkToPoint()
+    {
+        walkCoroutineRunning = true;
+        yield return new WaitForSeconds(3);
+        agent.SetDestination(walkPoint);
+        walkCoroutineRunning = false;
+    }
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
+    }
+
+
     public void DamagePlayer()
     {
         //player.GetComponent<PlayerController>().TakeDamage(damage);
@@ -195,5 +255,18 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Touch");
     }
-   
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(startingPoint, walkPointRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
 }
