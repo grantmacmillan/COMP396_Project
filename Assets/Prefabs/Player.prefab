@@ -432,6 +432,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5f414915-4b00-4832-86a6-4e47b678dbf8
     m_ActionName: OnDrone/Elevation[/Keyboard/space,/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 869a4cb9-d61f-4943-ac7e-cb9a4132caa1
+    m_ActionName: OnGround/Zoom[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnGround
@@ -729,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 8045500134760228780, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710076335667800141, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
+      propertyPath: m_TagString
+      value: SniperModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}

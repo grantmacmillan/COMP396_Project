@@ -9,6 +9,8 @@ TagManager:
   - PlayerCamera
   - DroneCamera
   - Bullet
+  - ScopeOverlay
+  - SniperModel
   layers:
   - Default
   - TransparentFX
