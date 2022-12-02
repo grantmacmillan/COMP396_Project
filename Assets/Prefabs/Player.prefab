@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1172675582}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,6 +412,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 597e7f25-1d51-49a6-84db-fcb95e9be2c7
     m_ActionName: OnGround/Crouch[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 487dfd51-6442-447e-b5d2-6864d5616c03
+    m_ActionName: OnGround/ChangeView[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f44fecb-3764-4650-896f-71983cd445f6
+    m_ActionName: OnDrone/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9027f6c-66b6-48b2-b9a8-ccd074960b1d
+    m_ActionName: OnDrone/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 02201e62-39e1-46d7-8a3e-07cd791f5714
+    m_ActionName: OnDrone/ChangeView[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f414915-4b00-4832-86a6-4e47b678dbf8
+    m_ActionName: OnDrone/Elevation[/Keyboard/space,/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnGround
