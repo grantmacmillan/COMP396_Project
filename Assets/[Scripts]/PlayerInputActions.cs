@@ -89,6 +89,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeView"",
+                    ""type"": ""Button"",
+                    ""id"": ""487dfd51-6442-447e-b5d2-6864d5616c03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -331,6 +340,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50d10ffb-28e6-4742-b0df-11e7acf03856"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -862,6 +882,226 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""OnDrone"",
+            ""id"": ""a6efc9f3-21b8-42a7-9e79-97c012c23bc7"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""5f44fecb-3764-4650-896f-71983cd445f6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""b9027f6c-66b6-48b2-b9a8-ccd074960b1d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ChangeView"",
+                    ""type"": ""Button"",
+                    ""id"": ""02201e62-39e1-46d7-8a3e-07cd791f5714"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Elevation"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f414915-4b00-4832-86a6-4e47b678dbf8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a243f04c-f983-4785-a3c3-95dce24442b0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""337a4e3b-b5d2-44c4-988f-b55f8ff70044"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""ec97a83d-b49c-4d01-bde7-131282f3ee90"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""2ecaae4d-2178-4160-a339-6f37d8782295"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""560a3e79-2e4b-49e1-aff1-161e01843858"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""ad960e35-5d36-48cf-a647-ece77f5b71e0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""0645b268-60d7-4e2d-8de6-0b79a2a5c630"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""40ea6ae9-1d4b-4c31-afdc-fa65b2f7b2c2"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""f0178eab-6334-4d6a-88fc-e6064f5f3c39"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""975a90ff-67e4-4632-b474-b02d4e10ac2c"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1695f667-9ac1-4af2-a6b0-c5b82d1bc72f"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""197c0951-afee-40d3-9189-34b993e18b0b"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd2303e4-0c2f-4683-a04c-66ce07a751af"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""05002639-2caf-4aba-9f14-d74814b21cfa"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""639c6a7a-4834-4041-9c9b-ff498db4a0ab"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""85425565-1f14-4ed6-b4b8-ec8290c69de1"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -875,6 +1115,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_OnGround_SwitchWeapon = m_OnGround.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_OnGround_Sprint = m_OnGround.FindAction("Sprint", throwIfNotFound: true);
         m_OnGround_Crouch = m_OnGround.FindAction("Crouch", throwIfNotFound: true);
+        m_OnGround_ChangeView = m_OnGround.FindAction("ChangeView", throwIfNotFound: true);
         // OnMenu
         m_OnMenu = asset.FindActionMap("OnMenu", throwIfNotFound: true);
         m_OnMenu_Navigate = m_OnMenu.FindAction("Navigate", throwIfNotFound: true);
@@ -887,6 +1128,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_OnMenu_RightClick = m_OnMenu.FindAction("RightClick", throwIfNotFound: true);
         m_OnMenu_TrackedDevicePosition = m_OnMenu.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_OnMenu_TrackedDeviceOrientation = m_OnMenu.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // OnDrone
+        m_OnDrone = asset.FindActionMap("OnDrone", throwIfNotFound: true);
+        m_OnDrone_Movement = m_OnDrone.FindAction("Movement", throwIfNotFound: true);
+        m_OnDrone_Look = m_OnDrone.FindAction("Look", throwIfNotFound: true);
+        m_OnDrone_ChangeView = m_OnDrone.FindAction("ChangeView", throwIfNotFound: true);
+        m_OnDrone_Elevation = m_OnDrone.FindAction("Elevation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -953,6 +1200,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_SwitchWeapon;
     private readonly InputAction m_OnGround_Sprint;
     private readonly InputAction m_OnGround_Crouch;
+    private readonly InputAction m_OnGround_ChangeView;
     public struct OnGroundActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -964,6 +1212,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @SwitchWeapon => m_Wrapper.m_OnGround_SwitchWeapon;
         public InputAction @Sprint => m_Wrapper.m_OnGround_Sprint;
         public InputAction @Crouch => m_Wrapper.m_OnGround_Crouch;
+        public InputAction @ChangeView => m_Wrapper.m_OnGround_ChangeView;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -994,6 +1243,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnCrouch;
+                @ChangeView.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnChangeView;
+                @ChangeView.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnChangeView;
+                @ChangeView.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnChangeView;
             }
             m_Wrapper.m_OnGroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -1019,6 +1271,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @ChangeView.started += instance.OnChangeView;
+                @ChangeView.performed += instance.OnChangeView;
+                @ChangeView.canceled += instance.OnChangeView;
             }
         }
     }
@@ -1128,6 +1383,63 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public OnMenuActions @OnMenu => new OnMenuActions(this);
+
+    // OnDrone
+    private readonly InputActionMap m_OnDrone;
+    private IOnDroneActions m_OnDroneActionsCallbackInterface;
+    private readonly InputAction m_OnDrone_Movement;
+    private readonly InputAction m_OnDrone_Look;
+    private readonly InputAction m_OnDrone_ChangeView;
+    private readonly InputAction m_OnDrone_Elevation;
+    public struct OnDroneActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public OnDroneActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_OnDrone_Movement;
+        public InputAction @Look => m_Wrapper.m_OnDrone_Look;
+        public InputAction @ChangeView => m_Wrapper.m_OnDrone_ChangeView;
+        public InputAction @Elevation => m_Wrapper.m_OnDrone_Elevation;
+        public InputActionMap Get() { return m_Wrapper.m_OnDrone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OnDroneActions set) { return set.Get(); }
+        public void SetCallbacks(IOnDroneActions instance)
+        {
+            if (m_Wrapper.m_OnDroneActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnMovement;
+                @Look.started -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnLook;
+                @ChangeView.started -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnChangeView;
+                @ChangeView.performed -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnChangeView;
+                @ChangeView.canceled -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnChangeView;
+                @Elevation.started -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnElevation;
+                @Elevation.performed -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnElevation;
+                @Elevation.canceled -= m_Wrapper.m_OnDroneActionsCallbackInterface.OnElevation;
+            }
+            m_Wrapper.m_OnDroneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @ChangeView.started += instance.OnChangeView;
+                @ChangeView.performed += instance.OnChangeView;
+                @ChangeView.canceled += instance.OnChangeView;
+                @Elevation.started += instance.OnElevation;
+                @Elevation.performed += instance.OnElevation;
+                @Elevation.canceled += instance.OnElevation;
+            }
+        }
+    }
+    public OnDroneActions @OnDrone => new OnDroneActions(this);
     public interface IOnGroundActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1137,6 +1449,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnSwitchWeapon(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnChangeView(InputAction.CallbackContext context);
     }
     public interface IOnMenuActions
     {
@@ -1150,5 +1463,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IOnDroneActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnChangeView(InputAction.CallbackContext context);
+        void OnElevation(InputAction.CallbackContext context);
     }
 }

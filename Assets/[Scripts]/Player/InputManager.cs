@@ -11,9 +11,14 @@ public class InputManager : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private PlayerInputActions.OnGroundActions onGround;
     private PlayerInputActions.OnMenuActions onMenu;
+    private PlayerInputActions.OnDroneActions onDrone;
     private PlayerController playerController;
     private PlayerLook playerLook;
+    private DroneLook droneLook;
+    private DroneController droneController;
     private PlayerGunController playerGunController;
+
+    private Camera playerCam, droneCam;
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,10 +39,41 @@ public class InputManager : MonoBehaviour
         onGround = playerInputActions.OnGround;
         onMenu = playerInputActions.OnMenu;
 
+        onDrone = playerInputActions.OnDrone;
+        GameObject drone = GameObject.FindGameObjectWithTag("Drone");
+        droneLook = drone.GetComponent<DroneLook>();
+        droneController = drone.GetComponent<DroneController>();
+
         //onGround.Jump.performed += ctx => playerController.Jump();
         onGround.SwitchWeapon.performed += ctx => playerGunController.SwitchGun();
+        onGround.ChangeView.performed += ctx => GroundChangeViewPerformed();
+        onDrone.ChangeView.performed += ctx => DroneChangeViewPerformed();
         playerInput.SwitchCurrentActionMap("OnGround");
         //playerInput.currentActionMap = onGround.Get();
+
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
+        droneCam = GameObject.FindGameObjectWithTag("DroneCamera").GetComponent<Camera>();
+
+        playerCam.enabled = true;
+        droneCam.enabled = false;
+    }
+
+    private void DroneChangeViewPerformed()
+    {
+        playerCam.enabled = true;
+        droneCam.enabled = false;
+        onGround.Enable();
+        onDrone.Disable();
+        playerInput.SwitchCurrentActionMap("OnGround");
+    }
+
+    private void GroundChangeViewPerformed()
+    {
+        playerCam.enabled = false;
+        droneCam.enabled = true;
+        onGround.Disable();
+        onDrone.Enable();
+        playerInput.SwitchCurrentActionMap("OnDrone");
     }
 
     public void SwitchActionMap()
@@ -65,6 +101,8 @@ public class InputManager : MonoBehaviour
     void FixedUpdate()
     {
         playerController.Move(onGround.Movement.ReadValue<Vector2>());
+        droneController.Move(onDrone.Movement.ReadValue<Vector2>());
+        droneController.MoveUpDown(onDrone.Elevation.ReadValue<Vector2>());
         playerController.isSprinting = onGround.Sprint.IsPressed();
         playerController.isCrouching = onGround.Crouch.IsPressed();
         if (onGround.Jump.IsPressed())
@@ -79,6 +117,7 @@ public class InputManager : MonoBehaviour
 
         }
         playerLook.Look(onGround.Look.ReadValue<Vector2>());
+        droneLook.Look(onDrone.Look.ReadValue<Vector2>());
     }
 
     void LateUpdate()

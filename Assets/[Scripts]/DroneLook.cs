@@ -6,7 +6,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlayerLook : MonoBehaviour
+public class DroneLook : MonoBehaviour
 {
     public Camera camera;
     public Transform orientation;
@@ -36,7 +36,7 @@ public class PlayerLook : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, 0, 90f);
 
         camera.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);

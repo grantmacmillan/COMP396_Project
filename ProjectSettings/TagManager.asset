@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Drone
+  - PlayerCamera
+  - DroneCamera
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Walls
   - NotWalkable
   - Enemy
-  - 
+  - Drone
   - 
   - 
   - 

@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        playerCam = Camera.main.transform;
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
