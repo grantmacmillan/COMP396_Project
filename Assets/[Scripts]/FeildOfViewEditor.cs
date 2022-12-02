@@ -8,14 +8,14 @@ public class FieldOfViewEditor : Editor
     {
         EnemyAI fov = (EnemyAI)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
+        Handles.DrawWireArc(fov.transform.position + new Vector3(0,1.5f,0), Vector3.up, Vector3.forward, 360, fov.radius);
 
         Vector3 viewAngle01 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
         Vector3 viewAngle02 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
 
         Handles.color = Color.magenta;
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.radius);
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.radius);
+        Handles.DrawLine(fov.transform.position + new Vector3(0, 1.5f, 0), fov.transform.position + viewAngle01 * fov.radius);
+        Handles.DrawLine(fov.transform.position + new Vector3(0, 1.5f, 0), fov.transform.position + viewAngle02 * fov.radius);
 
         if (fov.canSeePlayer)
         {

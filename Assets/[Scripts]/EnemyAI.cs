@@ -191,7 +191,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position + new Vector3(0,1.5f,0), radius, targetMask);
 
         if (rangeChecks.Length != 0)
         {
@@ -202,7 +202,7 @@ public class EnemyAI : MonoBehaviour
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                if (!Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), directionToTarget, distanceToTarget, obstructionMask))
                     canSeePlayer = true;
                 else
                     canSeePlayer = false;
