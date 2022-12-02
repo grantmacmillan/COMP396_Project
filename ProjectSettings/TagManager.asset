@@ -8,6 +8,7 @@ TagManager:
   - Drone
   - PlayerCamera
   - DroneCamera
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - NotWalkable
   - Enemy
   - Drone
-  - 
-  - 
-  - 
+  - Bullet
+  - Gun
+  - NavMeshAgent
   - 
   - 
   - 
