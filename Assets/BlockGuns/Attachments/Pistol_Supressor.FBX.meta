@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3c90f1e78ef04e4d892561964f5c444
+guid: 533df7be22699984ba196648d580ed7f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -7,53 +7,17 @@ ModelImporter:
       1: 100000
     second: //RootNode
   - first:
-      1: 100002
-    second: Rifle50cal
-  - first:
-      1: 100004
-    second: Rifle50CalHandle
-  - first:
-      1: 100006
-    second: Rifle50calMag
-  - first:
       4: 400000
     second: //RootNode
   - first:
-      4: 400002
-    second: Rifle50cal
-  - first:
-      4: 400004
-    second: Rifle50CalHandle
-  - first:
-      4: 400006
-    second: Rifle50calMag
-  - first:
       23: 2300000
-    second: Rifle50cal
-  - first:
-      23: 2300002
-    second: Rifle50CalHandle
-  - first:
-      23: 2300004
-    second: Rifle50calMag
+    second: //RootNode
   - first:
       33: 3300000
-    second: Rifle50cal
-  - first:
-      33: 3300002
-    second: Rifle50CalHandle
-  - first:
-      33: 3300004
-    second: Rifle50calMag
+    second: //RootNode
   - first:
       43: 4300000
-    second: Rifle50cal
-  - first:
-      43: 4300002
-    second: Rifle50calMag
-  - first:
-      43: 4300004
-    second: Rifle50CalHandle
+    second: Pistol_Supressor
   externalObjects: {}
   materials:
     materialImportMode: 1
