@@ -204,6 +204,8 @@ public class EnemyAI : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), directionToTarget, distanceToTarget, obstructionMask))
                     canSeePlayer = true;
+                else if (!Physics.Raycast(transform.position + new Vector3(0, 3f, 0), directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
                 else
                     canSeePlayer = false;
             }
