@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour
     private DroneLook droneLook;
     private DroneController droneController;
     private PlayerGunController playerGunController;
+    private GameObject scopeOverlay;
+    private GameObject sniperModel;
 
     private Camera playerCam, droneCam;
     // Start is called before the first frame update
@@ -44,10 +46,15 @@ public class InputManager : MonoBehaviour
         droneLook = drone.GetComponent<DroneLook>();
         droneController = drone.GetComponent<DroneController>();
 
+        scopeOverlay = GameObject.FindGameObjectWithTag("ScopeOverlay");
+        sniperModel = GameObject.FindGameObjectWithTag("SniperModel");
+        scopeOverlay.SetActive(false);
+
         //onGround.Jump.performed += ctx => playerController.Jump();
         onGround.SwitchWeapon.performed += ctx => playerGunController.SwitchGun();
         onGround.ChangeView.performed += ctx => GroundChangeViewPerformed();
         onDrone.ChangeView.performed += ctx => DroneChangeViewPerformed();
+
         playerInput.SwitchCurrentActionMap("OnGround");
         //playerInput.currentActionMap = onGround.Get();
 
@@ -107,6 +114,19 @@ public class InputManager : MonoBehaviour
         playerController.isCrouching = onGround.Crouch.IsPressed();
         if (onGround.Jump.IsPressed())
             playerController.Jump();
+
+        if (playerGunController.currentGun.name == "Sniper" && onGround.Zoom.IsPressed())
+        {
+            scopeOverlay.SetActive(true);
+            sniperModel.SetActive(false);
+            playerCam.fieldOfView = 20f;
+        }
+        else
+        {
+            scopeOverlay.SetActive(false);
+            sniperModel.SetActive(true);
+            playerCam.fieldOfView = 50f;
+        }
     }
 
     void Update()
