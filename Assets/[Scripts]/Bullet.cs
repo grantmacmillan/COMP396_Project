@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour
         if (isBullet && collider != null)
         {
             //FindObjectOfType<SoundManager>().Play("Hitmarker");
-            //collider.GetComponentInParent<EnemyAI>().TakeDamage(damage, transform.forward * knockback);
+            collider.GetComponentInParent<EnemyAI>().TakeDamage(damage, transform.forward * knockback);
         }
         else if(!isBullet)
         {
@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
 
             foreach (Collider enemy in enemies)
             {
-                //enemy.GetComponentInParent<EnemyAI>().TakeDamage(damage, transform.forward * knockback);
+                enemy.GetComponentInParent<EnemyAI>().TakeDamage(damage, transform.forward * knockback);
             }
         }
         Invoke("Destroy", 0.01f);
