@@ -24,8 +24,7 @@ public class Gun : MonoBehaviour
     public float bulletsPerTap;
     public float fireRateTap;
     public bool automatic;
-    public int level = 0;
-    
+
     private int bulletsShot;
     private bool shooting, canFire = true;
 
@@ -33,7 +32,7 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
-        playerCam = Camera.main;
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
     }
     public void CheckInput(InputAction action)
     {

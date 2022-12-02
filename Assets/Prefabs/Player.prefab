@@ -679,9 +679,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4663589788680580211, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
+      propertyPath: name
+      value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663589788680580211, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
+      propertyPath: speed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663589788680580211, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663589788680580211, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 2111108983449276964}
+    - target: {fileID: 4663589788680580211, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
+      propertyPath: bulletsPerTap
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1847d1cf74b9a5e4bbedf18464b86b9d, type: 3}
 --- !u!4 &4585531133547983749 stripped
@@ -697,9 +713,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 8037020966889157496}
     m_Modifications:
     - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
+      propertyPath: name
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
+      propertyPath: speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
+      propertyPath: spread
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
+      propertyPath: fireRate
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 2111108983449276964}
+    - target: {fileID: 313411120, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
+      propertyPath: bulletsPerTap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 699019191405644506, guid: 6df27383dc8884b4eb8222ec05415ec3, type: 3}
       propertyPath: m_RootOrder
       value: 1
