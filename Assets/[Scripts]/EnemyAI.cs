@@ -57,6 +57,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        maxHealth = 20;
+        health = maxHealth;
         StartCoroutine(FOVRoutine());
 
         fsm = new FiniteStateMachine();
@@ -134,7 +136,7 @@ public class EnemyAI : MonoBehaviour
 
         deadState.onEnter = delegate
         {
-            
+            Destroy(gameObject);
         };
 
         deadState.onFrame = delegate

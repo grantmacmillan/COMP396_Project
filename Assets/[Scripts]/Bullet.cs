@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
         if (collider.CompareTag("Enemy") && destroyOnImpact)
         {
             Impact(collider);
-            //Debug.Log("Bullet Trigger");
+            Debug.Log("Bullet Trigger");
         }
             
     }
