@@ -799,6 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1206343975}
   player: {fileID: 0}
+  startingPoint: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -811,7 +812,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 3
+  walkPointRange: 7
   isknockedBack: 0
   sightRange: 5
   attackRange: 2

@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Unity")]
     public NavMeshAgent agent;
     public Transform player;
+    public Vector3 startingPoint;
     FiniteStateMachine fsm;
     public Rigidbody rb;
 
@@ -41,6 +42,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player").transform; //find the player in the scene
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        startingPoint = transform.position;
     }
 
     private void Start()
@@ -59,11 +61,6 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onFrame = delegate
         {
-            if (!walkPointSet)
-            {
-                SearchWalkPoint();
-            }
-
             if (walkPointSet)
             {
                 if (!walkCoroutineRunning)
@@ -73,7 +70,13 @@ public class EnemyAI : MonoBehaviour
                 
 
             }
-
+            if (!walkPointSet)
+            {
+                
+                walkPoint = RandomNavSphere(startingPoint, walkPointRange, -1);
+                walkPointSet = true;
+            }
+            
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
             //walkpoint reached
@@ -190,19 +193,19 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(walkPoint);
         walkCoroutineRunning = false;
     }
-    private void SearchWalkPoint()
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        //make a random point that is in the range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        Vector3 randDirection = Random.insideUnitSphere * dist;
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        randDirection += origin;
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2.0f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
     }
+
 
     public void DamagePlayer()
     {
@@ -252,5 +255,18 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Touch");
     }
-   
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(startingPoint, walkPointRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
 }
