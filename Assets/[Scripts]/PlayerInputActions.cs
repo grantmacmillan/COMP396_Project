@@ -107,6 +107,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd7c0c55-fdff-477b-8474-773d4713517f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dd5b7ae-3f1d-4f4a-84a4-0f323eb7fb47"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1137,6 +1157,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_OnGround_Crouch = m_OnGround.FindAction("Crouch", throwIfNotFound: true);
         m_OnGround_ChangeView = m_OnGround.FindAction("ChangeView", throwIfNotFound: true);
         m_OnGround_Zoom = m_OnGround.FindAction("Zoom", throwIfNotFound: true);
+        m_OnGround_Interact = m_OnGround.FindAction("Interact", throwIfNotFound: true);
         // OnMenu
         m_OnMenu = asset.FindActionMap("OnMenu", throwIfNotFound: true);
         m_OnMenu_Navigate = m_OnMenu.FindAction("Navigate", throwIfNotFound: true);
@@ -1223,6 +1244,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_Crouch;
     private readonly InputAction m_OnGround_ChangeView;
     private readonly InputAction m_OnGround_Zoom;
+    private readonly InputAction m_OnGround_Interact;
     public struct OnGroundActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1236,6 +1258,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_OnGround_Crouch;
         public InputAction @ChangeView => m_Wrapper.m_OnGround_ChangeView;
         public InputAction @Zoom => m_Wrapper.m_OnGround_Zoom;
+        public InputAction @Interact => m_Wrapper.m_OnGround_Interact;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1272,6 +1295,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Zoom.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnZoom;
+                @Interact.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_OnGroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -1303,6 +1329,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -1480,6 +1509,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnChangeView(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IOnMenuActions
     {

@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     private DroneController droneController;
     private PlayerGunController playerGunController;
     private GameObject scopeOverlay;
+    private GameObject pistolCrosshair;
     private GameObject sniperModel;
 
     private Camera playerCam, droneCam;
@@ -49,6 +50,8 @@ public class InputManager : MonoBehaviour
         scopeOverlay = GameObject.FindGameObjectWithTag("ScopeOverlay");
         sniperModel = GameObject.FindGameObjectWithTag("SniperModel");
         scopeOverlay.SetActive(false);
+
+        pistolCrosshair = GameObject.FindGameObjectWithTag("PistolCrosshair");
 
         //onGround.Jump.performed += ctx => playerController.Jump();
         onGround.SwitchWeapon.performed += ctx => playerGunController.SwitchGun();
@@ -121,11 +124,20 @@ public class InputManager : MonoBehaviour
             sniperModel.SetActive(false);
             playerCam.fieldOfView = 20f;
         }
+
         else
         {
             scopeOverlay.SetActive(false);
             sniperModel.SetActive(true);
             playerCam.fieldOfView = 50f;
+        }
+        if (playerGunController.currentGun.name == "Sniper")
+        {
+            pistolCrosshair.SetActive(false);
+        }
+        else
+        {
+            pistolCrosshair.SetActive(true);
         }
     }
 

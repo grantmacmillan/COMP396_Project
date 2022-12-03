@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - ScopeOverlay
   - SniperModel
+  - PistolCrosshair
   layers:
   - Default
   - TransparentFX
