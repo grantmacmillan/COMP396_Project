@@ -23,6 +23,8 @@ public class EnemyAI : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     public bool canSeePlayer;
+    public float sightTimer;
+    public float maxTimeWithoutSight;
 
     [Header("Attacking")]
     public bool playerInTrigger = false;
@@ -122,16 +124,22 @@ public class EnemyAI : MonoBehaviour
             {
                 agent.SetDestination(player.position);
             }
-            
-            if (!canSeePlayer && !playerInAttackRange)
+
+            sightTimer += Time.deltaTime;
+            if (sightTimer > maxTimeWithoutSight)
             {
-                fsm.TransitionTo("Patroling");
+                if (!canSeePlayer && !playerInAttackRange)
+                {
+                    fsm.TransitionTo("Patroling");
+                }
             }
+            
+            
         };
 
         ChasingState.onExit = delegate
         {
-           
+            
         };
 
         deadState.onEnter = delegate
@@ -205,9 +213,16 @@ public class EnemyAI : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), directionToTarget, distanceToTarget, obstructionMask))
+                {
                     canSeePlayer = true;
+                    sightTimer = 0;
+                }
+                    
                 else if (!Physics.Raycast(transform.position + new Vector3(0, 3f, 0), directionToTarget, distanceToTarget, obstructionMask))
+                {
                     canSeePlayer = true;
+                    sightTimer = 0;
+                }
                 else
                     canSeePlayer = false;
             }
