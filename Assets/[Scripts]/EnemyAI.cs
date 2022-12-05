@@ -13,8 +13,9 @@ public class EnemyAI : MonoBehaviour
     public Vector3 startingPoint;
     FiniteStateMachine fsm;
     public Rigidbody rb;
-
+    private Animator anim;
     public LayerMask whatIsGround, whatIsPlayer;
+    
 
     [Header("FOV")]
     public float radius;
@@ -40,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public float walkTimer;
 
     [Header("Knockback")]
     public bool isknockedBack = false;
@@ -55,8 +57,9 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         startingPoint = transform.position;
+        anim = GetComponentInChildren<Animator>();
     }
-
+    int i = 0;
     private void Start()
     {
         maxHealth = 20;
@@ -71,6 +74,8 @@ public class EnemyAI : MonoBehaviour
 
         patrolingState.onEnter = delegate
         {
+            agent.speed = 3f;
+            anim.SetBool("isRunning", false);
             
         };
 
@@ -80,6 +85,11 @@ public class EnemyAI : MonoBehaviour
             {
                 if (!walkCoroutineRunning)
                 {
+                    
+                    if(i != 0)
+                    {
+                        anim.SetBool("isWalking", true);
+                    }
                     StartCoroutine(WalkToPoint());
                 }
                 
@@ -97,25 +107,29 @@ public class EnemyAI : MonoBehaviour
             //walkpoint reached
             if (distanceToWalkPoint.magnitude < 0.1f)
             {
+                anim.SetBool("isWalking", false);
                 StopCoroutine(WalkToPoint());
                 walkPointSet = false;
             }
 
             if (canSeePlayer)
             {
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isWalking", false);
                 fsm.TransitionTo("Chasing");
             }
         };
 
         patrolingState.onExit = delegate
         {
+            anim.SetBool("isWalking", false);
             StopCoroutine(WalkToPoint());
         };
 
         //chasing state
         ChasingState.onEnter = delegate
         {
-            
+            agent.speed = 7f;
         };
 
         ChasingState.onFrame = delegate
@@ -139,7 +153,7 @@ public class EnemyAI : MonoBehaviour
 
         ChasingState.onExit = delegate
         {
-            
+            anim.SetBool("isRunning", false);
         };
 
         deadState.onEnter = delegate
@@ -237,8 +251,9 @@ public class EnemyAI : MonoBehaviour
     IEnumerator WalkToPoint()
     {
         walkCoroutineRunning = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(walkTimer);
         agent.SetDestination(walkPoint);
+        i++;
         walkCoroutineRunning = false;
     }
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
