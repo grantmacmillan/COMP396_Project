@@ -195,6 +195,8 @@ GameObject:
   - component: {fileID: 1563124846}
   - component: {fileID: 1563124845}
   - component: {fileID: 7631079399731092543}
+  - component: {fileID: 57213598}
+  - component: {fileID: 57213609}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -542,6 +544,36 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &57213598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059088905225955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a083c503b3994f549a3aca6b47f9bdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 65536
+--- !u!114 &57213609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059088905225955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b73f47b6d65fae43aa4d1737b21a261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptText: {fileID: 0}
+  objectiveText: {fileID: 0}
 --- !u!1 &635718138217479742
 GameObject:
   m_ObjectHideFlags: 0

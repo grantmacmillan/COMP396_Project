@@ -12,6 +12,7 @@ TagManager:
   - ScopeOverlay
   - SniperModel
   - PistolCrosshair
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Gun
   - NavMeshAgent
   - Fence
-  - 
+  - Interactable
   - 
   - 
   - 
