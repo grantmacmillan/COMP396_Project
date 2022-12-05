@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: xRayMat
+  m_Name: PlayerxRayMat 1
   m_Shader: {fileID: -6465566751694194690, guid: 5b054e079139a4948995f62b3f45a693, type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
@@ -117,7 +117,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 4.4623713, g: 5.2935967, b: 8.3560095, a: 1}
+    - _Color: {r: 0, g: 8.735303, b: 0.4744213, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseSpeed: {r: 0, g: -5, b: 0, a: 0}
     - _NoiseTiling: {r: 0.5, g: 30, b: 0, a: 0}

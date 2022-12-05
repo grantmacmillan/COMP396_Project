@@ -42,6 +42,7 @@ public class EnemyAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
     public float walkTimer;
+    public GameObject footSteps;
 
     [Header("Knockback")]
     public bool isknockedBack = false;
@@ -53,6 +54,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        footSteps.SetActive(false);
         player = GameObject.Find("Player").transform; //find the player in the scene
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -88,6 +90,7 @@ public class EnemyAI : MonoBehaviour
                     
                     if(i != 0)
                     {
+                        footSteps.SetActive(true);
                         anim.SetBool("isWalking", true);
                     }
                     StartCoroutine(WalkToPoint());
@@ -108,6 +111,7 @@ public class EnemyAI : MonoBehaviour
             if (distanceToWalkPoint.magnitude < 0.1f)
             {
                 anim.SetBool("isWalking", false);
+                footSteps.SetActive(false);
                 StopCoroutine(WalkToPoint());
                 walkPointSet = false;
             }
@@ -115,6 +119,7 @@ public class EnemyAI : MonoBehaviour
             if (canSeePlayer)
             {
                 anim.SetBool("isRunning", true);
+                footSteps.SetActive(true);
                 anim.SetBool("isWalking", false);
                 fsm.TransitionTo("Chasing");
             }
@@ -123,12 +128,14 @@ public class EnemyAI : MonoBehaviour
         patrolingState.onExit = delegate
         {
             anim.SetBool("isWalking", false);
+            footSteps.SetActive(false);
             StopCoroutine(WalkToPoint());
         };
 
         //chasing state
         ChasingState.onEnter = delegate
         {
+            footSteps.SetActive(true);
             agent.speed = 7f;
         };
 
@@ -154,6 +161,7 @@ public class EnemyAI : MonoBehaviour
         ChasingState.onExit = delegate
         {
             anim.SetBool("isRunning", false);
+            footSteps.SetActive(false);
         };
 
         deadState.onEnter = delegate
