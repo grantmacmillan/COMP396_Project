@@ -166,13 +166,18 @@ public class EnemyAI : MonoBehaviour
 
         deadState.onEnter = delegate
         {
-            Destroy(gameObject);
+            footSteps.SetActive(false);
+            anim.SetBool("isDead", true);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isWalking", false);
+            StartCoroutine(KillPlayer());
+            
         };
 
         deadState.onFrame = delegate
         {
-            //put death code here
             
+
         };
 
         deadState.onExit = delegate
@@ -199,7 +204,11 @@ public class EnemyAI : MonoBehaviour
         };
     }
 
-    
+    IEnumerator KillPlayer()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(this.gameObject);
+    }
 
     // Update is called once per frame
     void Update()
