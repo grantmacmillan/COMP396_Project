@@ -320,10 +320,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayerDeath()
+    public void PlayerDeath()
     {
         SceneManager.LoadScene("GameOver");
-        
     }
 
     private IEnumerator RestoreHealth()

@@ -280,9 +280,9 @@ public class EnemyAI : MonoBehaviour
 
     public void DamagePlayer()
     {
-        player.GetComponent<PlayerController>().TakeDamage(damage);
-        OnKnockback(-transform.forward * 0.2f);
-        Debug.Log("Damaghed Player");
+        //player.GetComponent<PlayerController>().TakeDamage(damage);
+        //OnKnockback(-transform.forward * 0.2f);
+        player.GetComponent<PlayerController>().PlayerDeath();   
     }
 
     public void TakeDamage(float damage, Vector3 force)
