@@ -70,6 +70,8 @@ public class InputManager : MonoBehaviour
 
     private void DroneChangeViewPerformed()
     {
+        FindObjectOfType<SoundManager>().Stop("Drone");
+        FindObjectOfType<SoundManager>().Play("WhiteNoise");
         playerCam.enabled = true;
         droneCam.enabled = false;
         onGround.Enable();
@@ -79,6 +81,8 @@ public class InputManager : MonoBehaviour
 
     private void GroundChangeViewPerformed()
     {
+        FindObjectOfType<SoundManager>().Play("Drone");
+        FindObjectOfType<SoundManager>().Stop("WhiteNoise");
         playerCam.enabled = false;
         droneCam.enabled = true;
         onGround.Disable();
@@ -146,6 +150,7 @@ public class InputManager : MonoBehaviour
         if (!playerController.isSprinting)
         {
             playerGunController.currentGun.CheckInput(onGround.Fire);
+            
 
         }
         playerLook.Look(onGround.Look.ReadValue<Vector2>());

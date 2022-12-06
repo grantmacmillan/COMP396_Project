@@ -65,13 +65,19 @@ public class Bullet : MonoBehaviour
     private void Impact(Collider collider)
     {
         
+        
         if (impactEffect != null)
             Instantiate(impactEffect, transform.position, Quaternion.identity);
 
         if (isBullet && collider != null)
         {
-            //FindObjectOfType<SoundManager>().Play("Hitmarker");
-            collider.GetComponentInParent<EnemyAI>().TakeDamage(damage, transform.forward * knockback);
+            EnemyAI enemy = collider.GetComponentInParent<EnemyAI>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage, transform.forward * knockback);
+                FindObjectOfType<SoundManager>().Play("Hitmarker");
+            }
+            
         }
         else if(!isBullet)
         {

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        FindObjectOfType<SoundManager>().Play("WhiteNoise");
     }
 
     // Update is called once per frame

@@ -1897,8 +1897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  walkSpeed: 10
-  sprintSpeed: 15
+  walkSpeed: 5
+  sprintSpeed: 8
   gravity: -15
   groundDrag: 4
   airSpeedMultiplier: 0.4
@@ -1932,8 +1932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 5560275103700602275}
   orientation: {fileID: 6391941129828114872}
-  xSensitivity: 25
-  ySensitivity: 25
+  xSensitivity: 35
+  ySensitivity: 35
 --- !u!114 &5793382635969434461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dbb1966c7d20d47428ee821b9c864228, type: 3}
 --- !u!1 &7253742623901160346
@@ -3884,7 +3884,7 @@ MonoBehaviour:
   speed: 220
   upwardSpeed: 0
   name: Sniper
-  fireRate: 1
+  fireRate: 1.8
   spread: 0
   bulletsPerTap: 1
   fireRateTap: 0

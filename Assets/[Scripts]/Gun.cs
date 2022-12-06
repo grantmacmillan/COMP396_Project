@@ -45,6 +45,14 @@ public class Gun : MonoBehaviour
         {
             bulletsShot = 0;
             Shoot();
+            if (name == "Pistol")
+            {
+                FindObjectOfType<SoundManager>().Play("PistolFire");
+            }
+            else
+            {
+                FindObjectOfType<SoundManager>().Play("SniperFire");
+            }
         }
     }
 
