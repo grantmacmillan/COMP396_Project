@@ -166,11 +166,16 @@ public class EnemyAI : MonoBehaviour
 
         deadState.onEnter = delegate
         {
+            StopCoroutine(WalkToPoint());
+            Destroy(this);
+            Destroy(GetComponentInChildren<ChildTrigger>());
+            walkPointSet = true;
+            agent.isStopped = true;
             footSteps.SetActive(false);
             anim.SetBool("isDead", true);
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);
-            StartCoroutine(KillPlayer());
+            StartCoroutine(KillEnemy());
             
         };
 
@@ -204,10 +209,9 @@ public class EnemyAI : MonoBehaviour
         };
     }
 
-    IEnumerator KillPlayer()
+    IEnumerator KillEnemy()
     {
-        yield return new WaitForSeconds(5f);
-        Destroy(this.gameObject);
+        yield return new WaitForSeconds(15f);
     }
 
     // Update is called once per frame
