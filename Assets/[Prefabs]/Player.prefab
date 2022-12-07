@@ -2055,6 +2055,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bd7c0c55-fdff-477b-8474-773d4713517f
     m_ActionName: OnGround/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 742dc68e-80f6-47ab-8672-ac3ca63b1548
+    m_ActionName: OnGround/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnGround
@@ -2263,7 +2267,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 131063
+    m_Bits: 262135
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

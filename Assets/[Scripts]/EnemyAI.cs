@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody rb;
     private Animator anim;
     public LayerMask whatIsGround, whatIsPlayer;
+    public GameObject body;
+    public GameObject flashlight;
+    public GameObject pointLight;
     
 
     [Header("FOV")]
@@ -165,6 +168,10 @@ public class EnemyAI : MonoBehaviour
 
         deadState.onEnter = delegate
         {
+            Destroy(flashlight.gameObject);
+            Destroy(pointLight.gameObject);
+            int deadLayer = LayerMask.NameToLayer("Dead");
+            SetGameLayerRecursive(body, deadLayer);
             StopCoroutine(WalkToPoint());
             Destroy(this);
             Destroy(GetComponentInChildren<ChildTrigger>());
@@ -211,6 +218,20 @@ public class EnemyAI : MonoBehaviour
     IEnumerator KillEnemy()
     {
         yield return new WaitForSeconds(15f);
+    }
+
+    private void SetGameLayerRecursive(GameObject _go, int _layer)
+    {
+        _go.layer = _layer;
+        foreach (Transform child in _go.transform)
+        {
+            child.gameObject.layer = _layer;
+
+            Transform _HasChildren = child.GetComponentInChildren<Transform>();
+            if (_HasChildren != null)
+                SetGameLayerRecursive(child.gameObject, _layer);
+
+        }
     }
 
     // Update is called once per frame
