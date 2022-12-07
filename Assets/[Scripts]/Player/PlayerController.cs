@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        String name = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("scene", name);
+        PlayerPrefs.Save();
+
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         animator = GetComponentInChildren<Animator>();
@@ -322,9 +326,6 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDeath()
     {
-        String name = SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("scene", name);
-        PlayerPrefs.Save();
         SceneManager.LoadScene("GameOver");
     }
 
