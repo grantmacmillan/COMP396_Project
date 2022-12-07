@@ -1914,7 +1914,7 @@ MonoBehaviour:
   crouchYScale: 0.75
   isCrouching: 0
   maxSlopeAngle: 40
-  jumpHeight: 12
+  jumpHeight: 15
   ImpulseSource: {fileID: 4143646562907669432}
   pickupRange: 7
   isSprinting: 0
