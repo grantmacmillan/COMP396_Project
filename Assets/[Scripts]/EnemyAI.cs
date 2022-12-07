@@ -272,7 +272,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator WalkToPoint()
     {
         walkCoroutineRunning = true;
-        yield return new WaitForSeconds(walkTimer);
+        yield return new WaitForSeconds(walkTimer + Random.Range(0f,1f));
         agent.SetDestination(walkPoint);
         i++;
         walkCoroutineRunning = false;
