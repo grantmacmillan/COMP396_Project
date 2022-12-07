@@ -6,10 +6,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
     public TMP_InputField sensField;
+    public AudioMixer audioMixer;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,5 +53,10 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("sens", int.Parse(sensField.text));
         PlayerPrefs.Save();
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
     }
 }
