@@ -90,8 +90,7 @@ public class EnemyAI : MonoBehaviour
                     
                     if(i != 0)
                     {
-                        footSteps.SetActive(true);
-                        anim.SetBool("isWalking", true);
+                        
                     }
                     StartCoroutine(WalkToPoint());
                 }
@@ -273,6 +272,8 @@ public class EnemyAI : MonoBehaviour
     {
         walkCoroutineRunning = true;
         yield return new WaitForSeconds(walkTimer + Random.Range(0f,1f));
+        footSteps.SetActive(true);
+        anim.SetBool("isWalking", true);
         agent.SetDestination(walkPoint);
         i++;
         walkCoroutineRunning = false;
