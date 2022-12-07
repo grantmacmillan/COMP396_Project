@@ -13941,6 +13941,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5793382635969434461, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793382635969434461, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionId
+      value: 742dc68e-80f6-47ab-8672-ac3ca63b1548
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793382635969434461, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionName
+      value: OnGround/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
     - target: {fileID: 5793382636664495406, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
       propertyPath: promptText
       value: 
@@ -13949,14 +13961,6 @@ PrefabInstance:
       propertyPath: objectiveText
       value: 
       objectReference: {fileID: 1148254157}
-    - target: {fileID: 5800406401884185348, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
-      propertyPath: xSensitivity
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5800406401884185348, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
-      propertyPath: ySensitivity
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 5800406402124405088, guid: 76f0f242b06885d499ead8d8384c50a4, type: 3}
       propertyPath: m_RootOrder
       value: 1
