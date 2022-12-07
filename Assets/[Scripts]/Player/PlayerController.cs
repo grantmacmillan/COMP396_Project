@@ -322,6 +322,9 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDeath()
     {
+        String name = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("scene", name);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("GameOver");
     }
 
