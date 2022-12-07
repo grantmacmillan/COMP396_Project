@@ -10621,8 +10621,8 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.17
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 39a9bad3ee742f749931ef5f2d891d87, type: 2}
 --- !u!4 &527803186
