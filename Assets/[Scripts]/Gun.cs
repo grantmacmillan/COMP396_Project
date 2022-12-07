@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     public Camera playerCam;
     public Transform bulletSpawnPoint;
     public ParticleSystem muzzleFlash;
+    public Animation anim;
 
     [Header("Bullet Stats")] 
     public float speed;
@@ -33,6 +34,7 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
+        anim = GetComponent<Animation>();
     }
     public void CheckInput(InputAction action)
     {
@@ -58,6 +60,7 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        anim.Play();
         //FindObjectOfType<SoundManager>().Play("RifleFire");
         canFire = false;
         bulletsShot++;

@@ -2055,6 +2055,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bd7c0c55-fdff-477b-8474-773d4713517f
     m_ActionName: OnGround/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 742dc68e-80f6-47ab-8672-ac3ca63b1548
+    m_ActionName: OnGround/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnGround
@@ -2730,6 +2734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6473168619655785533}
   - component: {fileID: 5793382637323002071}
+  - component: {fileID: 4858953106592020170}
   m_Layer: 13
   m_Name: Pistol
   m_TagString: Untagged
@@ -2773,6 +2778,7 @@ MonoBehaviour:
   playerCam: {fileID: 5560275103700602275}
   bulletSpawnPoint: {fileID: 1973437521652603710}
   muzzleFlash: {fileID: 8095640716413632319}
+  anim: {fileID: 0}
   speed: 150
   upwardSpeed: 0
   name: Pistol
@@ -2782,6 +2788,22 @@ MonoBehaviour:
   fireRateTap: 0
   automatic: 0
   allowInvoke: 1
+--- !u!111 &4858953106592020170
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473168619656081437}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9123e53f43140134b995179eb8dffb73, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9123e53f43140134b995179eb8dffb73, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6473168619656081439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3841,6 +3863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8053894727864134658}
   - component: {fileID: 1215511084139251569}
+  - component: {fileID: 6667983160265392561}
   m_Layer: 13
   m_Name: Sniper
   m_TagString: Untagged
@@ -3881,6 +3904,7 @@ MonoBehaviour:
   playerCam: {fileID: 5560275103700602275}
   bulletSpawnPoint: {fileID: 4022222553262912826}
   muzzleFlash: {fileID: 8464463068810418996}
+  anim: {fileID: 0}
   speed: 220
   upwardSpeed: 0
   name: Sniper
@@ -3890,6 +3914,22 @@ MonoBehaviour:
   fireRateTap: 0
   automatic: 0
   allowInvoke: 1
+--- !u!111 &6667983160265392561
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053894727864168482}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5b01facdb7ed20646a8902714debbc91, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5b01facdb7ed20646a8902714debbc91, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8053894727864168484
 GameObject:
   m_ObjectHideFlags: 0

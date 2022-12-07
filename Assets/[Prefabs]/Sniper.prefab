@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4585531133292300032}
   - component: {fileID: 4663589788680580211}
+  - component: {fileID: 5420286658832507444}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Untagged
@@ -133,6 +134,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   bulletSpawnPoint: {fileID: 7473711254328483384}
   muzzleFlash: {fileID: 2671173890893541430}
+  anim: {fileID: 0}
   speed: 0
   upwardSpeed: 0
   name: 
@@ -142,6 +144,22 @@ MonoBehaviour:
   fireRateTap: 0
   automatic: 0
   allowInvoke: 1
+--- !u!111 &5420286658832507444
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585531133292600096}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5b01facdb7ed20646a8902714debbc91, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5b01facdb7ed20646a8902714debbc91, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4585531133292600098
 GameObject:
   m_ObjectHideFlags: 0
