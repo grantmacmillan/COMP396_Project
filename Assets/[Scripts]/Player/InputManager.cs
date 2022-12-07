@@ -147,12 +147,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (!playerController.isSprinting)
-        {
-            playerGunController.currentGun.CheckInput(onGround.Fire);
-            
-
-        }
+        playerGunController.currentGun.CheckInput(onGround.Fire);
         playerLook.Look(onGround.Look.ReadValue<Vector2>());
         droneLook.Look(onDrone.Look.ReadValue<Vector2>());
     }
