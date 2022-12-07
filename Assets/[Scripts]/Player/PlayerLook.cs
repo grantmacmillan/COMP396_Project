@@ -20,6 +20,9 @@ public class PlayerLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        xSensitivity = PlayerPrefs.GetInt("sens", 35);
+        ySensitivity = PlayerPrefs.GetInt("sens", 35);
     }
     public void Look(Vector2 input)
     {

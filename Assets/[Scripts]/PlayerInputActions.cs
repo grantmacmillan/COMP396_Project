@@ -116,6 +116,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""742dc68e-80f6-47ab-8672-ac3ca63b1548"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -391,6 +400,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f9c7fc4-0232-41e3-9908-81b80019f363"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1158,6 +1178,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_OnGround_ChangeView = m_OnGround.FindAction("ChangeView", throwIfNotFound: true);
         m_OnGround_Zoom = m_OnGround.FindAction("Zoom", throwIfNotFound: true);
         m_OnGround_Interact = m_OnGround.FindAction("Interact", throwIfNotFound: true);
+        m_OnGround_Pause = m_OnGround.FindAction("Pause", throwIfNotFound: true);
         // OnMenu
         m_OnMenu = asset.FindActionMap("OnMenu", throwIfNotFound: true);
         m_OnMenu_Navigate = m_OnMenu.FindAction("Navigate", throwIfNotFound: true);
@@ -1245,6 +1266,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_ChangeView;
     private readonly InputAction m_OnGround_Zoom;
     private readonly InputAction m_OnGround_Interact;
+    private readonly InputAction m_OnGround_Pause;
     public struct OnGroundActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1259,6 +1281,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @ChangeView => m_Wrapper.m_OnGround_ChangeView;
         public InputAction @Zoom => m_Wrapper.m_OnGround_Zoom;
         public InputAction @Interact => m_Wrapper.m_OnGround_Interact;
+        public InputAction @Pause => m_Wrapper.m_OnGround_Pause;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1298,6 +1321,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnInteract;
+                @Pause.started -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_OnGroundActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_OnGroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -1332,6 +1358,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1510,6 +1539,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnChangeView(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IOnMenuActions
     {
