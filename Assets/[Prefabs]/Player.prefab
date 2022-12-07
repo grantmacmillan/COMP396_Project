@@ -1910,7 +1910,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   playerHeight: 2
-  crouchSpeed: 7
+  crouchSpeed: 3
   crouchYScale: 0.75
   isCrouching: 0
   maxSlopeAngle: 40
