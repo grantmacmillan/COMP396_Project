@@ -1,2 +1,2 @@
-# COMP396_Project
+SNEAK
 Grant MacMillan, Ben Coombes, Josh Balt
